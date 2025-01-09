@@ -41,19 +41,19 @@ def nth_fibonacci(index):
     if index in (0, 1):
         return 1
 
-    TRANSFORMATION_MATRIX = [[1, 1], [1, 0]]
-    BASE_MATRIX = [[1, 0], [0, 0]]
+    transformation_matrix = [[1, 1], [1, 0]]
+    base_matrix = [[1, 0], [0, 0]]
 
-    # Multiply TRANSFORMATION_MATRIX (index - 1) times
-    result_matrix = power(TRANSFORMATION_MATRIX, index - 1)
+    # Multiply transformation_matrix (index - 1) times
+    result_matrix = power(transformation_matrix, index - 1)
 
-    # Multiply result_matrix with BASE_MATRIX
-    multiply(result_matrix, BASE_MATRIX)
+    # Multiply result_matrix with base_matrix
+    multiply(result_matrix, base_matrix)
 
     return result_matrix[0][0] % MOD
 
 # Sample Input
-NTH_INDEX = 3
+nth_index = 3
 
 # Print the nth Fibonacci number
-print(nth_fibonacci(NTH_INDEX))
+print(nth_fibonacci(nth_index))
