@@ -53,7 +53,7 @@ def nth_fibonacci(index):
     return result_matrix[0][0] % MOD
 
 # Sample Input
-Nth_idx = 3
+NTH_IDX = 3
 
 # Print the nth Fibonacci number
-print(nth_fibonacci(Nth_idx))
+print(nth_fibonacci(NTH_IDX))
