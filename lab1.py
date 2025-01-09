@@ -1,10 +1,11 @@
 # Python Program to find the Nth fibonacci number using
 # Matrix Exponentiation
-
+""" NEW program"""
 MOD = 10**9 + 7
 
 # function to multiply two 2x2 Matrices
 def multiply(A, B):
+    """Multiply two matrices"""
     # Matrix to store the result
     C = [[0, 0], [0, 0]]
 
@@ -22,6 +23,7 @@ def multiply(A, B):
 
 # Function to find (Matrix M ^ expo)
 def power(M, expo):
+    """return mod power"""
     # Initialize result with identity matrix
     ans = [[1, 0], [0, 1]]
 
@@ -36,6 +38,7 @@ def power(M, expo):
 
 
 def nthFibonacci(n):
+    """return nth fib"""
     # Base case
     if n == 0 or n == 1:
         return 1
