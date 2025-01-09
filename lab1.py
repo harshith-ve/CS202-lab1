@@ -1,63 +1,59 @@
-# Python Program to find the Nth fibonacci number using
+# Python Program to find the Nth Fibonacci number using
 # Matrix Exponentiation
-""" NEW program"""
+""" Program to find Nth Fibonacci number """
+
 MOD = 10**9 + 7
 
-# function to multiply two 2x2 Matrices
-def multiply(A, B):
-    """Multiply two matrices"""
+def multiply(matrix_a, matrix_b):
+    """Multiply two 2x2 matrices."""
     # Matrix to store the result
-    C = [[0, 0], [0, 0]]
+    result = [[0, 0], [0, 0]]
 
-    # Matrix Multiply
-    C[0][0] = (A[0][0] * B[0][0] + A[0][1] * B[1][0]) % MOD
-    C[0][1] = (A[0][0] * B[0][1] + A[0][1] * B[1][1]) % MOD
-    C[1][0] = (A[1][0] * B[0][0] + A[1][1] * B[1][0]) % MOD
-    C[1][1] = (A[1][0] * B[0][1] + A[1][1] * B[1][1]) % MOD
+    # Matrix multiplication
+    result[0][0] = (matrix_a[0][0] * matrix_b[0][0] + matrix_a[0][1] * matrix_b[1][0]) % MOD
+    result[0][1] = (matrix_a[0][0] * matrix_b[0][1] + matrix_a[0][1] * matrix_b[1][1]) % MOD
+    result[1][0] = (matrix_a[1][0] * matrix_b[0][0] + matrix_a[1][1] * matrix_b[1][0]) % MOD
+    result[1][1] = (matrix_a[1][0] * matrix_b[0][1] + matrix_a[1][1] * matrix_b[1][1]) % MOD
 
-    # Copy the result back to the first matrix
-    A[0][0] = C[0][0]
-    A[0][1] = C[0][1]
-    A[1][0] = C[1][0]
-    A[1][1] = C[1][1]
+    # Copy the result back to matrix_a
+    matrix_a[0][0] = result[0][0]
+    matrix_a[0][1] = result[0][1]
+    matrix_a[1][0] = result[1][0]
+    matrix_a[1][1] = result[1][1]
 
-# Function to find (Matrix M ^ expo)
-def power(M, expo):
-    """return mod power"""
-    # Initialize result with identity matrix
-    ans = [[1, 0], [0, 1]]
+def power(matrix, exponent):
+    """Calculate matrix exponentiation with mod."""
+    # Initialize result with the identity matrix
+    result = [[1, 0], [0, 1]]
 
-    # Fast Exponentiation
-    while expo:
-        if expo & 1:
-            multiply(ans, M)
-        multiply(M, M)
-        expo >>= 1
+    # Fast exponentiation
+    while exponent:
+        if exponent & 1:
+            multiply(result, matrix)
+        multiply(matrix, matrix)
+        exponent >>= 1
 
-    return ans
+    return result
 
-
-def nthFibonacci(n):
-    """return nth fib"""
-    # Base case
-    if n == 0 or n == 1:
+def nth_fibonacci(index):
+    """Return the Nth Fibonacci number."""
+    # Base cases
+    if index in (0, 1):
         return 1
 
-    M = [[1, 1], [1, 0]]
-    # F(0) = 0, F(1) = 1
-    F = [[1, 0], [0, 0]]
+    TRANSFORMATION_MATRIX = [[1, 1], [1, 0]]
+    BASE_MATRIX = [[1, 0], [0, 0]]
 
-    # Multiply matrix M (n - 1) times
-    res = power(M, n - 1)
+    # Multiply TRANSFORMATION_MATRIX (index - 1) times
+    result_matrix = power(TRANSFORMATION_MATRIX, index - 1)
 
-    # Multiply Resultant with Matrix F
-    multiply(res, F)
+    # Multiply result_matrix with BASE_MATRIX
+    multiply(result_matrix, BASE_MATRIX)
 
-    return res[0][0] % MOD
-
+    return result_matrix[0][0] % MOD
 
 # Sample Input
-n = 3
+NTH_INDEX = 3
 
-# Print the nth fibonacci number
-print(nthFibonacci(n))
+# Print the nth Fibonacci number
+print(nth_fibonacci(NTH_INDEX))
